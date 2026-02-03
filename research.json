@@ -1,8 +1,15 @@
 {
-  "hello": "AGENT: System online. How can I assist with your audit today?",
-  "hi": "AGENT: Greeting received. Standing by for command input.",
-  "how are you": "AGENT: Systems at 100% efficiency. All nodes monitored.",
-  "bitsler": "AUDIT_LOG: Bitsler verified. STATUS: Tier 1. WagerX Verdict: Recommended.",
-  "btc": "AGENT: Querying Bitcoin Price Node...",
-  "help": "COMMAND_LIST: [bitsler] [btc] [eth] [market] [stats]"
+  "hello": "AGENT: System online. Quantum core initialized. How can I assist with your audit today, operator?",
+  "hi": "AGENT: Greeting received. Standing by for command input. Type 'help' for directory.",
+  "how are you": "AGENT: Systems at 100% efficiency. All casino nodes and market feeds are currently being monitored.",
+  "who are you": "AGENT: I am the WagerX AI Agent. My purpose is to provide real-time casino audits and market data.",
+  "bitsler": "AUDIT_LOG: Bitsler verified. STATUS: Tier 1. Payouts: Instant. WagerX Verdict: Highly Recommended.",
+  "toshi": "AUDIT_LOG: Toshi.bet verified. STATUS: Solana-Native. Payouts: < 2 mins. WagerX Verdict: Best for Privacy.",
+  "btc": "AGENT: Querying Bitcoin Price Node... [Live data stream active].",
+  "eth": "AGENT: Querying Ethereum Price Node... [Live data stream active].",
+  "sol": "AGENT: Querying Solana Price Node... [Live data stream active].",
+  "market": "AGENT: Global Market Query active. Type 'btc', 'eth', or 'sol' for live price nodes.",
+  "stats": "SYSTEM_STATS: 14 Nodes Online | 100% Uptime | Real-time Market Data Feed: Active.",
+  "safety": "SECURITY: All verified sites must pass 256-bit SSL and Provably Fair hash audits.",
+  "help": "COMMAND_LIST: [bitsler] [toshi] [btc] [eth] [sol] [market] [safety] [stats]"
 }
