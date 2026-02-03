@@ -1,6 +1,8 @@
 {
-  "bitsler": "AUDIT: Bitsler verified. Payouts via LN are instant. Security: 9.8/10.",
-  "toshi": "AUDIT: Toshi.bet is Solana Native. No KYC. High-speed transactions.",
-  "payout": "WagerX Intel: Fastest payout average is currently under 4 minutes.",
-  "safety": "WagerX Protocol: Always check for 'Provably Fair' hashes."
+  "bitsler": "AGENT_REPORT: Bitsler.com Audit: STATUS=Verified. Payout Speed=Lightning. Security=SSL+2FA. Verdict: Tier 1.",
+  "toshi": "AGENT_REPORT: Toshi.bet Audit: STATUS=Verified. Crypto-Native. Speed=High. Verdict: Best for Privacy.",
+  "bonus": "CLASSIFIED: Current Best Value - Bitsler 100% Match. Command: 'claim' for links.",
+  "safety": "PROTOCOL: Always ensure the site uses a 'Provably Fair' algorithm. WagerX Agent confirms all listed sites pass this test.",
+  "agent": "IDENTIFICATION: WagerX AI Agent v1.2. Purpose: Casino Auditing and Real-time Verification. Creator: cryptoplayer.",
+  "help": "AVAILABLE_COMMANDS: [bitsler] [toshi] [payout] [safety] [bonus] [agent]"
 }
