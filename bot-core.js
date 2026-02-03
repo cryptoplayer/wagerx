@@ -1,4 +1,5 @@
-// WAGERX AI AGENT v1.6 - ONBOARDING UPDATE
+// WAGERX AI AGENT v1.6 - FULL CORE SCRIPT
+// Features: Live Market Feed, Automated Onboarding, and Idle Nudge
 let idleTimer;
 
 async function loadWagerXBot() {
@@ -9,12 +10,14 @@ async function loadWagerXBot() {
     try {
         const response = await fetch(DATA_PATH);
         window.wagerxData = await response.json();
+        
+        // Update Status Light
         status.classList.add('online');
         
-        // Updated Connection Message per your request
+        // 1. Updated Connection Message
         display.innerHTML = `<div class="bot-msg">SYSTEM: CONNECTION_STABLE. WAGERX AI AGENT is online.</div>`;
         
-        // Start the automated tutorial greeting after 3 seconds
+        // 2. Start Onboarding Greeting after 3 seconds
         setTimeout(sendOnboardingGreeting, 3000);
         
         resetIdleTimer();
@@ -23,14 +26,14 @@ async function loadWagerXBot() {
     }
 }
 
+// THE ONBOARDING MESSAGE
 function sendOnboardingGreeting() {
     const display = document.getElementById('bot-display');
     const greetMsg = document.createElement('div');
     greetMsg.className = 'bot-msg';
-    greetMsg.style.color = '#00d4ff'; // Brighter color for the greeting
+    greetMsg.style.color = '#00d4ff'; // Cyber blue to grab attention
     display.appendChild(greetMsg);
     
-    // Your specific onboarding question
     const welcomeText = "AGENT: Hey, I can help you access information about a casino or currency. Try typing 'Bitsler' or 'BTC' below.";
     
     typeWriter(welcomeText, 0, greetMsg, () => {
@@ -38,9 +41,10 @@ function sendOnboardingGreeting() {
     });
 }
 
+// IDLE NUDGE LOGIC
 function resetIdleTimer() {
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(sendNudge, 60000); // Nudge if silent for 60 seconds
+    idleTimer = setTimeout(sendNudge, 60000); // Nudge user after 60 seconds of silence
 }
 
 function sendNudge() {
@@ -55,6 +59,7 @@ function sendNudge() {
     });
 }
 
+// LIVE CRYPTO PRICE ENGINE
 async function getLivePrice(coin) {
     try {
         const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd&include_24hr_change=true`);
@@ -66,6 +71,7 @@ async function getLivePrice(coin) {
     } catch (err) { return "ERROR: Market Node timed out."; }
 }
 
+// THE TYPEWRITER EFFECT
 function typeWriter(text, i, element, callback) {
     if (i < text.length) {
         element.innerHTML += text.charAt(i);
@@ -74,14 +80,18 @@ function typeWriter(text, i, element, callback) {
     } else if (callback) { callback(); }
 }
 
+// MAIN EXECUTION FUNCTION
 async function runResearch() {
-    resetIdleTimer();
+    resetIdleTimer(); // Reset the nudge timer on every interaction
     const input = document.getElementById('bot-input');
     const display = document.getElementById('bot-display');
     const val = input.value.toLowerCase().trim();
     if(!val || !window.wagerxData) return;
 
+    // Show User Command
     display.innerHTML += `<div class="user-msg">> ${input.value}</div>`;
+    
+    // Scanning Animation
     const scanMsg = document.createElement('div');
     scanMsg.className = 'bot-msg';
     scanMsg.innerHTML = 'AGENT: Scanning database...';
@@ -90,13 +100,15 @@ async function runResearch() {
 
     setTimeout(async () => {
         scanMsg.remove();
-        let response = "NO_MATCH: Type 'help' for valid commands.";
+        let response = "NO_MATCH: Audit not found. Type 'help' for commands.";
         
+        // Special Market Logic
         if (val === "btc" || val === "bitcoin") response = await getLivePrice("bitcoin");
         else if (val === "eth" || val === "ethereum") response = await getLivePrice("ethereum");
         else if (val === "sol" || val === "solana") response = await getLivePrice("solana");
-        else if (val === "cryptoplayer") response = "ACCESS_GRANTED: Welcome back, Commander.";
+        else if (val === "cryptoplayer") response = "AUTH_GRANTED: Welcome back, Commander. All systems 100%.";
         else {
+            // Match against JSON file
             for (let key in window.wagerxData) {
                 if (val.includes(key)) response = window.wagerxData[key];
             }
@@ -106,7 +118,10 @@ async function runResearch() {
         botMsgDiv.className = 'bot-msg';
         botMsgDiv.innerHTML = 'AGENT: ';
         display.appendChild(botMsgDiv);
-        typeWriter(response, 0, botMsgDiv, () => { display.scrollTop = display.scrollHeight; });
+        
+        typeWriter(response, 0, botMsgDiv, () => {
+            display.scrollTop = display.scrollHeight;
+        });
     }, 800);
     input.value = '';
 }
