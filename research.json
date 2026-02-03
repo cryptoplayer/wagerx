@@ -1,25 +1,15 @@
-{
-  "bitsler": "AUDIT_LOG: Bitsler [VERIFIED SAFE]\n------------------------------------------\nTESTED: 2/2-2026 | DEPOSIT: 0.001 BTC\nWITHDRAWAL: 3 min | VPN: YES | KYC: NONE\n\nCOMMUNITY SCORE:\nReddit: 5/5 | Bitcointalk: 4/5\nWAGERX TRUST SCORE: 9.8/10\n\n🛡️ ANDREAS' TAKE: Our top pick. Zero issues found. Our only concern is the new affiliate program—we expect more from Bitsler there.",
-  
-  "betfury": "AUDIT_LOG: BetFury [VERIFIED SAFE]\n------------------------------------------\nTESTED: 2/2-2026 | DEPOSIT: 2 SOL\nWITHDRAWAL: 7 min | VPN: YES (Norway) | KYC: NO\n\nCOMMUNITY SCORE:\nReddit: 5/5 | Bitcointalk: 5/5\nWAGERX TRUST SCORE: 9.8/10\n\n🛡️ ANDREAS' TAKE: A community staple. Very active on socials (huge green flag). Only catch: Game freshness can lag on brand new Hacksaw/NoLimit drops.",
-  
-  "rainbet": "AUDIT_LOG: Rainbet [VERIFIED SAFE]\n------------------------------------------\nTESTED: 2/2-2026 | DEPOSIT: 2 SOL\nWITHDRAWAL: 8 min | VPN: YES (Norway) | KYC: NO\n\nCOMMUNITY SCORE:\nReddit: 5/5 | Bitcointalk: 5/5\nWAGERX TRUST SCORE: 9.8/10\n\n🛡️ ANDREAS' TAKE: Tested via Norway VPN. Some lag on Pragmatic slots (VPN related, not casino). Support is excellent—human rep in under 2 minutes.",
-  
-  "duel": "AUDIT_LOG: Duel [VERIFIED SAFE]\n------------------------------------------\nTESTED: 1/27-2026 | DEPOSIT: 1 ETH\nWITHDRAWAL: 3 min | VPN: YES | KYC: NONE\n\nCOMMUNITY SCORE:\nReddit: 4/5 | Bitcointalk: 2/5\nWAGERX TRUST SCORE: 9.8/10\n\n🛡️ ANDREAS' TAKE: Flawless smooth session via Norway VPN. Zero friction over 30+ days of play. One of the most stable 'Grey Area' options available.",
-  
-  "thrill": "AUDIT_LOG: Thrill [VERIFIED SAFE]\n------------------------------------------\nTESTED: 1/27-2026 | DEPOSIT: 0.5 ETH\nWITHDRAWAL: 18 min | VPN: YES | KYC: NONE\n\nCOMMUNITY SCORE:\nReddit: 3/5 | Bitcointalk: 1/5\nWAGERX TRUST SCORE: 9.8/10\n\n🛡️ ANDREAS' TAKE: Played via Mexico VPN. Good session, but support response times were slower than competitors. Payouts are reliable but not instant.",
-  
-  "towerbet": "AUDIT_LOG: Tower Bet [VERIFIED SAFE]\n------------------------------------------\nTESTED: 2/2-2026 | DEPOSIT: 1 ETH\nWITHDRAWAL: 9 min | VPN: YES | KYC: NONE\n\nCOMMUNITY SCORE:\nReddit: 5/5 | Bitcointalk: 4/5\nWAGERX TRUST SCORE: 9.8/10\n\n🛡️ ANDREAS' TAKE: Best option for wagering races. Very popular lately for a reason—the action is consistent and the UI is modern.",
-  
-  "toshi": "AUDIT_LOG: Toshi Bet [VERIFIED SAFE]\n------------------------------------------\nTESTED: 2/2-2026 | DEPOSIT: 0.003 BTC\nWITHDRAWAL: 5 min | VPN: YES | KYC: NONE\n\nCOMMUNITY SCORE:\nReddit: 5/5 | Bitcointalk: 5/5\nWAGERX TRUST SCORE: 9.8/10\n\n🛡️ ANDREAS' TAKE: Our personal favorite. Since the hack fix a while ago, they have tightened everything up perfectly. Highly reliable.",
-  
-  "roobet": "AUDIT_LOG: Roobet [VERIFIED SAFE]\n------------------------------------------\nTESTED: 1/27-2026 | DEPOSIT: 0.001 BTC\nWITHDRAWAL: 2 min | VPN: YES | KYC: NONE\n\nCOMMUNITY SCORE:\nReddit: 5/5 | Bitcointalk: 5/5\nWAGERX TRUST SCORE: 9.8/10\n\n🛡️ ANDREAS' TAKE: One of the 'Big Three.' A bit over-hyped, but they truly deserve their spot on the 2026 Best Lists for sheer reliability.",
-  
-  "bcgame": "AUDIT_LOG: BC Game [VERIFIED SAFE]\n------------------------------------------\nTESTED: 1/27-2026 | DEPOSIT: 0.005 BTC\nWITHDRAWAL: 6 min (Post-KYC) | VPN: YES | KYC: YES (at $5.2k)\n\nCOMMUNITY SCORE:\nReddit: 5/5 | Bitcointalk: 5/5\nWAGERX TRUST SCORE: 9.8/10\n\n🛡️ ANDREAS' TAKE: Still one of the best. First time we hit a KYC trigger here, but it was expected due to the $5,200 withdrawal amount.",
-  
-  "mbit": "AUDIT_LOG: mBit [VERIFIED SAFE]\n------------------------------------------\nTESTED: 1/27-2026 | DEPOSIT: 2 SOL\nWITHDRAWAL: 24 min | VPN: YES (Norway) | KYC: NO\n\nCOMMUNITY SCORE:\nReddit: 3/5 | Bitcointalk: 3/5\nWAGERX TRUST SCORE: 8/10\n\n🛡️ ANDREAS' TAKE: Long-time veteran site. Generally smooth, but withdrawal times are starting to feel slow compared to 2026 standards.",
-  
-  "coinsgame": "AUDIT_LOG: Coins Game [VERIFIED SAFE]\n------------------------------------------\nTESTED: 1/27-2026 | DEPOSIT: 1 ETH\nWITHDRAWAL: 4 min | VPN: YES (Norway) | KYC: NO\n\nCOMMUNITY SCORE:\nReddit: 4/5 | Bitcointalk: 3/5\nWAGERX TRUST SCORE: 8.5/10\n\n🛡️ ANDREAS' TAKE: Great reward program and works exceptionally well on mobile browsers. Fast payouts and solid reliability.",
-  
-  "notes": "LIVE TESTING SUMMARY (2026):\n----------------------------\nAverage Solana Withdrawal: 14s\nAverage Bitcoin Withdrawal: 4.2m\nMost VPN-Friendly: Bitsler, Duel\nKYC Risk Level: Low (unless >$5k USD)\nAll nodes verified by WagerX Archive."
+"notes": "LIVE TESTING SUMMARY (2026):\n----------------------------\nAverage Solana Withdrawal: 14s\nAverage Bitcoin Withdrawal: 4.2m\nMost VPN-Friendly: Bitsler, Duel\nKYC Risk Level: Low (unless >$5k USD)\nAll nodes verified by WagerX Archive.",
+  "rtp": "RTP (Return to Player) is the % of wagered money a game pays back over time. WagerX recommends slots with 96%+ RTP for long-term sustainability.",
+  "house edge": "The casino's mathematical advantage. A 1% house edge means the house expects to keep $1 for every $100 bet. Always look for low-edge 'Originals'.",
+  "provably fair": "A blockchain system allowing you to verify every bet's fairness using cryptographic seeds. It proves the casino didn't 'cheat' the result.",
+  "kyc": "Know Your Customer. Process where casinos verify your identity. WagerX audits focus on 'No-KYC' sites that allow anonymous play via crypto.",
+  "wagering": "Also called 'Rollover'. The amount you must bet before withdrawing bonus funds. (e.g., 10x wagering on $100 = $1,000 total bets required).",
+  "faucet": "A feature where casinos give away tiny amounts of free crypto (e.g., Satoshi) so you can test games for free without a deposit.",
+  "rekt": "Crypto-slang for 'Wrecked'. It means suffering a massive loss, usually by over-leveraging or chasing losses. Stay safe and bet small!",
+  "degen": "Short for 'Degenerate'. A high-risk player who loves volatility and experimental games. WagerX is built for degens who want transparency.",
+  "whale": "A high-stakes player who bets massive volumes. Whales get the best VIP perks, including dedicated hosts and instant 20%+ cashback.",
+  "moon": "When a coin or a multiplier hits a massive peak. 'To the moon!' refers to chasing those 1000x+ hits on games like Crash or Limbo.",
+  "wagmi": "'We Are Gonna Make It'. An optimistic rally cry in the crypto community used when a platform pays out big or a project succeeds.",
+  "ngmi": "'Not Gonna Make It'. Used when someone makes a bad bet, panics, or uses a non-verified, shady casino. Don't be NGMI—use audited sites.",
+  "dca": "Dollar Cost Averaging. A strategy where you deposit fixed amounts at regular intervals rather than one big 'all-in' bet. Great for bankroll management."
 }
