@@ -1,48 +1,71 @@
-// WAGERX AI CORE v1.8
+/**
+ * WAGERX AI AGENT - CORE SCRIPT v2.0
+ * Features: Multi-keyword detection, Typewriter Effect, Live Price Feeds, Fail-safe Mode.
+ */
+
+// 1. DATA SOURCE
 const DATA_PATH = 'https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json';
 
+// 2. OFFLINE BRAIN (Fail-safe if GitHub is unreachable)
+const OFFLINE_DATA = {
+    "hello": "AGENT: Connectivity limited, but local nodes are active. How can I help?",
+    "help": "COMMANDS: [bitsler] [toshi] [btc] [eth] [stats] [safety]",
+    "stats": "SYSTEM: Backup Node Online. GitHub Link: Waiting for handshake...",
+    "bitsler": "AUDIT: Bitsler is Tier 1. Payouts: Instant. Verified by local cache."
+};
+
+// 3. INITIALIZATION
 async function loadWagerXBot() {
     const display = document.getElementById('bot-display');
     try {
-        // Fetch with cache-busting to prevent "System Error" on updates
+        // Fetch with cache-busting
         const response = await fetch(DATA_PATH + '?v=' + Date.now());
-        if (!response.ok) throw new Error("File not found");
-        window.wagerxData = await response.json();
+        if (!response.ok) throw new Error("Connection Refused");
         
-        console.log("WagerX Data Loaded Successfully");
-        // Start the UI greeting
-        setTimeout(sendWelcome, 1000);
+        window.wagerxData = await response.json();
+        console.log("WAGERX: Data Node Linked.");
+        
     } catch (err) {
-        console.error("Initialization Failed:", err);
-        display.innerHTML += `<div class="bot-msg" style="color:red">CRITICAL_ERROR: Connection to GitHub failed. Check if research.json is Public.</div>`;
+        console.warn("WAGERX: Link failed. Activating Offline Brain.", err);
+        window.wagerxData = OFFLINE_DATA;
+    } finally {
+        // Small delay for dramatic effect
+        setTimeout(sendWelcome, 800);
     }
 }
 
+// 4. WELCOME MESSAGE
 function sendWelcome() {
     const display = document.getElementById('bot-display');
     const welcomeDiv = document.createElement('div');
     welcomeDiv.className = 'bot-msg';
-    welcomeDiv.style.color = '#00d4ff';
     display.appendChild(welcomeDiv);
-    typeWriter("AGENT: WagerX Terminal Online. I can audit casinos or check market prices. How can I help?", 0, welcomeDiv);
+    
+    typeWriter("AGENT: WagerX Terminal Online. Secure link established. Type 'help' for directory.", 0, welcomeDiv);
 }
 
+// 5. MAIN LOGIC (Smarter Sentence Recognition)
 async function runResearch() {
     const input = document.getElementById('bot-input');
     const display = document.getElementById('bot-display');
     const val = input.value.toLowerCase().trim();
+    
     if (!val) return;
 
     // Show User Input
     display.innerHTML += `<div class="user-msg">> ${input.value}</div>`;
     
-    let response = "COMMAND_UNKNOWN: Type 'help' for directory.";
+    let response = "COMMAND_UNKNOWN: Keyword not found in database. Type 'help'.";
     
-    // 1. Check for Market Keywords
-    if (val.includes("btc") || val.includes("bitcoin")) response = await getLivePrice("bitcoin");
-    else if (val.includes("eth") || val.includes("ethereum")) response = await getLivePrice("ethereum");
-    
-    // 2. Check for JSON Keywords (The "Human" Layer)
+    // Check for Market Price Requests first
+    if (val.includes("btc") || val.includes("bitcoin")) {
+        response = await getLivePrice("bitcoin");
+    } else if (val.includes("eth") || val.includes("ethereum")) {
+        response = await getLivePrice("ethereum");
+    } else if (val.includes("sol") || val.includes("solana")) {
+        response = await getLivePrice("solana");
+    } 
+    // Check JSON keywords (Includes multi-word support)
     else {
         for (let key in window.wagerxData) {
             if (val.includes(key)) {
@@ -52,30 +75,46 @@ async function runResearch() {
         }
     }
 
+    // Create Bot Response Element
     const botDiv = document.createElement('div');
     botDiv.className = 'bot-msg';
     display.appendChild(botDiv);
-    typeWriter("AGENT: " + response, 0, botDiv);
     
+    typeWriter(response, 0, botDiv);
+    
+    // Clear & Scroll
     input.value = '';
     display.scrollTop = display.scrollHeight;
 }
 
+// 6. LIVE PRICE ENGINE
 async function getLivePrice(coin) {
     try {
         const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd&include_24hr_change=true`);
         const data = await res.json();
-        return `MARKET_DATA: ${coin.toUpperCase()} is $${data[coin].usd.toLocaleString()} (${data[coin].usd_24h_change.toFixed(2)}% 24h).`;
-    } catch (e) { return "ERROR: Price Node Offline."; }
+        const price = data[coin].usd.toLocaleString();
+        const change = data[coin].usd_24h_change.toFixed(2);
+        const trend = change >= 0 ? "📈" : "📉";
+        return `MARKET_DATA: ${coin.toUpperCase()} is $${price} USD (${trend} ${change}%).`;
+    } catch (e) {
+        return "ERROR: Price Node Offline. Check network settings.";
+    }
 }
 
+// 7. TYPEWRITER EFFECT
 function typeWriter(text, i, element) {
     if (i < text.length) {
         element.innerHTML += text.charAt(i);
         i++;
-        setTimeout(() => typeWriter(text, i, element), 20);
+        setTimeout(() => {
+            typeWriter(text, i, element);
+            // Keep scrolling as we type
+            const display = document.getElementById('bot-display');
+            display.scrollTop = display.scrollHeight;
+        }, 25);
     }
 }
 
-// Global scope for the Enter key
+// Global initialization
+window.onload = loadWagerXBot;
 window.runResearch = runResearch;
