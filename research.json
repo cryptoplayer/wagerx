@@ -1,11 +1,10 @@
 {
-  "bitsler": "AUDIT_LOG [ID: 8821]: Bitsler.com | STATUS: VERIFIED. | LICENSING: Curacao #8048/JAZ. | PAYOUTS: Instant via Lightning Network (BTC/ETH/SOL supported). | EDGE: 100% Provably Fair. | WagerX VERDICT: Highly recommended for high-volume players.",
-  "toshi": "AUDIT_LOG [ID: 4490]: Toshi.bet | STATUS: VERIFIED. | ECOSYSTEM: Solana Native (Phantom/Solflare integration). | KYC: Zero (Anonymity tier 1). | SPEED: < 60s transaction finality. | WagerX VERDICT: Top pick for Solana degen privacy.",
-  "jackbit": "AUDIT_LOG [ID: 1105]: Jackbit | STATUS: VERIFIED. | GAMES: 6,000+ Titles. | PAYOUTS: High limits (up to $50k/mo). | SPORTS: Integrated crypto sportsbook available. | WagerX VERDICT: Best all-in-one platform for 2026.",
-  "payout": "WagerX GLOBAL_TRACKER: Current average crypto withdrawal speed across verified sites: 3m 42s. Fastest node: Bitsler (Lightning). Slowest node: ETH Mainnet (Gas dependent).",
-  "safety": "SECURITY_PROTOCOL: WagerX Agent confirms all verified nodes use SSL-256 encryption. Mandatory check: Always verify the 'Provably Fair' seed before starting a session.",
-  "bonus": "PROMO_DATABASE: Current active codes found: [bitsler: 'WAGERX100' for 100% match] | [toshi: 'PRIVATE' for 5% rakeback]. Type 'claim' to access links.",
-  "claim": "AGENT: Re-routing to secure affiliate portals. Please ensure your VPN is active. Links attached to site buttons below this terminal.",
-  "stats": "SYSTEM_STATS: 14 Active Casino Nodes | 100% Uptime | 1,240+ Daily Verification Queries. Last database sync: February 2026.",
-  "help": "AGENT_COMMANDS: [bitsler] [toshi] [jackbit] [payout] [safety] [bonus] [stats] [cryptoplayer]"
+  "bitsler": "AUDIT_LOG: Bitsler verified. STATUS: Tier 1. Payouts: Instant via Lightning. WagerX Verdict: Highly Recommended.",
+  "toshi": "AUDIT_LOG: Toshi.bet verified. STATUS: Solana-Native. Payouts: < 2 mins. WagerX Verdict: Best for Privacy.",
+  "jackbit": "AUDIT_LOG: Jackbit verified. STATUS: No-KYC available. Payouts: High Limits. WagerX Verdict: Top All-in-One.",
+  "market": "AGENT: Global Market Query active. Type 'btc', 'eth', or 'sol' for live price nodes.",
+  "payout": "WagerX TRACKER: Current avg network withdrawal speed: 3m 42s. Fastest: Bitsler (LN).",
+  "safety": "SECURITY: All verified sites must pass 256-bit SSL and Provably Fair hash audits.",
+  "stats": "SYSTEM_STATS: 14 Nodes Online | 100% Uptime | Real-time Market Data Feed: Active.",
+  "help": "COMMAND_LIST: [bitsler] [toshi] [jackbit] [btc] [eth] [sol] [market] [payout] [safety] [stats] [cryptoplayer]"
 }
