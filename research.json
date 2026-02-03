@@ -3,14 +3,10 @@
   "hi": "AGENT: Greeting received. Standing by for command input.",
   "how are you": "AGENT: Systems at 100% efficiency. All casino nodes are currently being monitored. How can I help you?",
   "who are you": "AGENT: I am the WagerX AI Agent. My purpose is to provide real-time casino audits and market data.",
-  "thanks": "AGENT: You are welcome. Integrity is our priority.",
-  "thank you": "AGENT: Protocol complete. Standing by for next query.",
   "bitsler": "AUDIT_LOG: Bitsler verified. STATUS: Tier 1. Payouts: Instant via Lightning. WagerX Verdict: Highly Recommended.",
   "toshi": "AUDIT_LOG: Toshi.bet verified. STATUS: Solana-Native. Payouts: < 2 mins. WagerX Verdict: Best for Privacy.",
-  "jackbit": "AUDIT_LOG: Jackbit verified. STATUS: No-KYC available. Payouts: High Limits. WagerX Verdict: Top All-in-One.",
+  "btc": "AGENT: Querying Bitcoin Price Node...",
   "market": "AGENT: Global Market Query active. Type 'btc', 'eth', or 'sol' for live price nodes.",
-  "payout": "WagerX TRACKER: Current avg network withdrawal speed: 3m 42s. Fastest: Bitsler (LN).",
-  "safety": "SECURITY: All verified sites must pass 256-bit SSL and Provably Fair hash audits.",
   "stats": "SYSTEM_STATS: 14 Nodes Online | 100% Uptime | Real-time Market Data Feed: Active.",
-  "help": "COMMAND_LIST: [bitsler] [toshi] [jackbit] [btc] [eth] [sol] [market] [payout] [safety] [stats]"
+  "help": "COMMAND_LIST: [bitsler] [toshi] [btc] [eth] [sol] [market] [stats]"
 }
