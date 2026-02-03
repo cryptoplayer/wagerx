@@ -1,104 +1,81 @@
-// WAGERX AI AGENT v1.7 - THE HUMAN INTERACTION UPDATE
-let idleTimer;
+// WAGERX AI CORE v1.8
+const DATA_PATH = 'https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json';
 
 async function loadWagerXBot() {
-    const DATA_PATH = 'https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json';
-    const status = document.getElementById('bot-status');
     const display = document.getElementById('bot-display');
     try {
-        const response = await fetch(DATA_PATH);
+        // Fetch with cache-busting to prevent "System Error" on updates
+        const response = await fetch(DATA_PATH + '?v=' + Date.now());
+        if (!response.ok) throw new Error("File not found");
         window.wagerxData = await response.json();
-        if(status) status.classList.add('online');
-        display.innerHTML = `<div class="bot-msg">SYSTEM: CONNECTION_STABLE. WAGERX AI AGENT is online.</div>`;
-        setTimeout(sendOnboardingGreeting, 3000);
-        resetIdleTimer();
+        
+        console.log("WagerX Data Loaded Successfully");
+        // Start the UI greeting
+        setTimeout(sendWelcome, 1000);
     } catch (err) {
-        display.innerHTML = `<div class="bot-msg" style="color:#ff7b72">SYSTEM: OFFLINE. Database link failed.</div>`;
+        console.error("Initialization Failed:", err);
+        display.innerHTML += `<div class="bot-msg" style="color:red">CRITICAL_ERROR: Connection to GitHub failed. Check if research.json is Public.</div>`;
     }
 }
 
-function sendOnboardingGreeting() {
+function sendWelcome() {
     const display = document.getElementById('bot-display');
-    const greetMsg = document.createElement('div');
-    greetMsg.className = 'bot-msg';
-    greetMsg.style.color = '#00d4ff';
-    display.appendChild(greetMsg);
-    typeWriter("AGENT: Hey, I can help you access information about a casino or currency. Try typing 'Bitsler' or 'BTC' below.", 0, greetMsg, () => {
-        display.scrollTop = display.scrollHeight;
-    });
+    const welcomeDiv = document.createElement('div');
+    welcomeDiv.className = 'bot-msg';
+    welcomeDiv.style.color = '#00d4ff';
+    display.appendChild(welcomeDiv);
+    typeWriter("AGENT: WagerX Terminal Online. I can audit casinos or check market prices. How can I help?", 0, welcomeDiv);
 }
 
-function resetIdleTimer() {
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(sendNudge, 60000); 
-}
-
-function sendNudge() {
+async function runResearch() {
+    const input = document.getElementById('bot-input');
     const display = document.getElementById('bot-display');
-    const nudgeMsg = document.createElement('div');
-    nudgeMsg.className = 'bot-msg';
-    nudgeMsg.style.color = '#8b949e';
-    display.appendChild(nudgeMsg);
-    typeWriter("AGENT: Still here? Enter a casino name or 'stats' for the latest node data.", 0, nudgeMsg, () => {
-        display.scrollTop = display.scrollHeight;
-    });
+    const val = input.value.toLowerCase().trim();
+    if (!val) return;
+
+    // Show User Input
+    display.innerHTML += `<div class="user-msg">> ${input.value}</div>`;
+    
+    let response = "COMMAND_UNKNOWN: Type 'help' for directory.";
+    
+    // 1. Check for Market Keywords
+    if (val.includes("btc") || val.includes("bitcoin")) response = await getLivePrice("bitcoin");
+    else if (val.includes("eth") || val.includes("ethereum")) response = await getLivePrice("ethereum");
+    
+    // 2. Check for JSON Keywords (The "Human" Layer)
+    else {
+        for (let key in window.wagerxData) {
+            if (val.includes(key)) {
+                response = window.wagerxData[key];
+                break;
+            }
+        }
+    }
+
+    const botDiv = document.createElement('div');
+    botDiv.className = 'bot-msg';
+    display.appendChild(botDiv);
+    typeWriter("AGENT: " + response, 0, botDiv);
+    
+    input.value = '';
+    display.scrollTop = display.scrollHeight;
 }
 
 async function getLivePrice(coin) {
     try {
         const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd&include_24hr_change=true`);
         const data = await res.json();
-        const price = data[coin].usd;
-        const change = data[coin].usd_24h_change.toFixed(2);
-        const emoji = change >= 0 ? "📈" : "📉";
-        return `LIVE_DATA: ${coin.toUpperCase()} is $${price.toLocaleString()} USD (${emoji} ${change}% 24h).`;
-    } catch (err) { return "ERROR: Market Node timed out."; }
+        return `MARKET_DATA: ${coin.toUpperCase()} is $${data[coin].usd.toLocaleString()} (${data[coin].usd_24h_change.toFixed(2)}% 24h).`;
+    } catch (e) { return "ERROR: Price Node Offline."; }
 }
 
-function typeWriter(text, i, element, callback) {
+function typeWriter(text, i, element) {
     if (i < text.length) {
         element.innerHTML += text.charAt(i);
         i++;
-        setTimeout(() => typeWriter(text, i, element, callback), 25);
-    } else if (callback) { callback(); }
+        setTimeout(() => typeWriter(text, i, element), 20);
+    }
 }
 
-async function runResearch() {
-    resetIdleTimer();
-    const input = document.getElementById('bot-input');
-    const display = document.getElementById('bot-display');
-    const val = input.value.toLowerCase().trim();
-    if(!val || !window.wagerxData) return;
-
-    display.innerHTML += `<div class="user-msg">> ${input.value}</div>`;
-    const scanMsg = document.createElement('div');
-    scanMsg.className = 'bot-msg';
-    scanMsg.innerHTML = 'AGENT: Processing...';
-    display.appendChild(scanMsg);
-    display.scrollTop = display.scrollHeight;
-
-    setTimeout(async () => {
-        scanMsg.remove();
-        let response = "NO_MATCH: Command not recognized. Type 'help' for directory.";
-        
-        if (val.includes("btc") || val.includes("bitcoin")) response = await getLivePrice("bitcoin");
-        else if (val.includes("eth") || val.includes("ethereum")) response = await getLivePrice("ethereum");
-        else if (val.includes("sol") || val.includes("solana")) response = await getLivePrice("solana");
-        else if (val.includes("cryptoplayer")) response = "ACCESS_GRANTED: Welcome back, Commander.";
-        else {
-            for (let key in window.wagerxData) {
-                if (val.includes(key)) {
-                    response = window.wagerxData[key];
-                    break;
-                }
-            }
-        }
-
-        const botMsgDiv = document.createElement('div');
-        botMsgDiv.className = 'bot-msg';
-        botMsgDiv.innerHTML = 'AGENT: ';
-        display.appendChild(botMsgDiv);
-        typeWriter(response, 0, botMsgDiv, () => { display.scrollTop = display.scrollHeight; });
-    }, 600);
-    input.value = '';
-}
+// Global scope for the Enter key
+window.runResearch = runResearch;
