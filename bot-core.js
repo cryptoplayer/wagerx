@@ -1,48 +1,44 @@
 async function getBotResponse(userInput) {
+  const input = userInput.toLowerCase().trim();
+
   try {
-    // Load the knowledge base
-    const res = await fetch('research.json');
+    const res = await fetch(
+      "https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO/main/research.json"
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to load research.json");
+    }
+
     const data = await res.json();
 
-    const input = userInput.toLowerCase().trim();
-
     /* ----------------------------------------
-       1️⃣ HIGH PRIORITY INTENT: BEST CASINOS
+       1️⃣ HIGH PRIORITY: BEST CASINOS
     ---------------------------------------- */
     if (data.intent_best_casinos) {
-      const intent = data.intent_best_casinos;
-
-      for (const keyword of intent.keywords) {
+      for (const keyword of data.intent_best_casinos.keywords) {
         if (input.includes(keyword)) {
-          return intent.answer;
+          return data.intent_best_casinos.answer;
         }
       }
     }
 
     /* ----------------------------------------
-       2️⃣ CASINO-SPECIFIC & TERM MATCHING
+       2️⃣ STANDARD KEYWORD MATCHING
     ---------------------------------------- */
     for (const key in data) {
-      // skip intent blocks
       if (key.startsWith("intent_")) continue;
 
       const value = data[key];
-
-      if (
-        typeof value === "string" &&
-        input.includes(key.toLowerCase())
-      ) {
+      if (typeof value === "string" && input.includes(key.toLowerCase())) {
         return value;
       }
     }
 
-    /* ----------------------------------------
-       3️⃣ FALLBACK RESPONSE
-    ---------------------------------------- */
-    return "I can help with **best crypto casinos**, live audit reports, KYC, RTP, VPN-friendly sites, or specific casinos like Bitsler or BetFury 👀";
+    return "I can help with best crypto casinos, audits, KYC, RTP, VPN-friendly sites, or specific casinos like Bitsler 👀";
 
-  } catch (error) {
-    console.error("WagerX bot error:", error);
-    return "Something went wrong loading WagerX data. Please try again shortly ⚠️";
+  } catch (err) {
+    console.error("WagerX Bot Error:", err);
+    return "⚠️ WagerX bot couldn’t load audit data. Please try again in a moment.";
   }
 }
