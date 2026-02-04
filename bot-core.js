@@ -1,43 +1,55 @@
+// Cache the data to keep the bot fast (90+ performance score friendly)
+let wagerxData = null;
+
 async function getBotResponse(userInput) {
   const input = userInput.toLowerCase().trim();
 
   try {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json"
-    );
+    // Only fetch if we don't have the data yet
+    if (!wagerxData) {
+      const response = await fetch(
+        "https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json"
+      );
 
-    if (!response.ok) {
-      throw new Error("Failed to load research.json");
+      if (!response.ok) throw new Error("Failed to load research.json");
+      wagerxData = await response.json();
     }
 
-    const data = await response.json();
+    const { intents, casinos, glossary } = wagerxData;
 
-    // 1️⃣ Priority intent: Best casinos
-    if (data.intent_best_casinos) {
-      for (const keyword of data.intent_best_casinos.keywords) {
-        if (input.includes(keyword)) {
-          return data.intent_best_casinos.answer;
+    // 1️⃣ Check Structured Intents (e.g., "Best Casinos")
+    if (intents && intents.best_casinos) {
+      const best = intents.best_casinos;
+      if (best.keywords.some(kw => input.includes(kw))) {
+        return best.answer;
+      }
+    }
+
+    // 2️⃣ Check Casino Audits (e.g., "Tell me about Bitsler")
+    if (casinos) {
+      for (const [name, auditInfo] of Object.entries(casinos)) {
+        if (input.includes(name)) {
+          return auditInfo;
         }
       }
     }
 
-    // 2️⃣ Keyword matching
-    for (const key in data) {
-      if (key.startsWith("intent_")) continue;
-
-      if (
-        typeof data[key] === "string" &&
-        input.includes(key.toLowerCase())
-      ) {
-        return data[key];
+    // 3️⃣ Check Glossary/Terms (e.g., "What is KYC?")
+    if (glossary) {
+      for (const [term, definition] of Object.entries(glossary)) {
+        // Replace underscore with space for matching (e.g., "provably_fair" -> "provably fair")
+        const readableTerm = term.replace('_', ' ');
+        if (input.includes(readableTerm)) {
+          return definition;
+        }
       }
     }
 
-    // 3️⃣ Fallback
-    return "Ask me about **best crypto casinos**, audits, KYC, RTP, or specific casinos like Bitsler 👀";
+    // 4️⃣ Fallback: If no match found
+    return "I'm the WagerX Audit Bot. Ask me about **best crypto casinos**, or specific brands like **Bitsler**, **Toshi**, or **Rainbet**. I can also explain terms like **KYC** and **RTP**.";
 
   } catch (error) {
     console.error("WagerX Bot Error:", error);
-    return "⚠️ WagerX bot failed to load audit data. Please try again shortly.";
+    return "⚠️ WagerX Lab is currently offline. Please refresh or try again later.";
   }
 }
