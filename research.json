@@ -1,6 +1,5 @@
 {
   "intent_best_casinos": {
-    "priority": 1,
     "keywords": [
       "best crypto casino",
       "best crypto casinos",
@@ -11,30 +10,28 @@
       "top bitcoin casino",
       "top bitcoin casinos"
     ],
-    "answer": "The best crypto and Bitcoin casinos based on **WagerX live testing audits (2026)** are:\n\n🥇 Bitsler — Fast BTC withdrawals (~3 min), no KYC, VPN-friendly.\n🥈 BetFury — Trusted platform with strong community and daily dividends.\n🥉 Rainbet — No-KYC friendly, smooth UX, responsive support.\n\nAlso VERIFIED SAFE via live testing:\nDuel, TowerBet, Toshi Bet, Roobet, BC.Game, mBit, CoinsGame.\n\nAll casinos listed are 🟢 VERIFIED SAFE using real deposits & withdrawals.\n\n👉 Full audit reports: https://wagerx.io/best-crypto-casinos\n\n— Audited by Andreas Ericsson, WagerX Live Testing Lab"
+    "answer": "The best crypto and Bitcoin casinos based on **WagerX live audits (2026)** are:\n\n🥇 Bitsler — Fast BTC withdrawals (~3 min), no KYC, VPN-friendly.\n🥈 BetFury — Trusted platform with strong community and daily dividends.\n🥉 Rainbet — No-KYC, clean UI, responsive support.\n\nAlso VERIFIED SAFE via live testing:\nDuel, TowerBet, Toshi Bet, Roobet, BC.Game, mBit, CoinsGame.\n\nAll casinos listed are 🟢 VERIFIED SAFE using real deposits & withdrawals.\n\n👉 Full audit reports: https://wagerx.io/best-crypto-casinos\n\n— Audited by Andreas Ericsson, WagerX Live Testing Lab"
   },
 
-  "bitsler": "Bitsler is a top-tier crypto casino known for instant Bitcoin withdrawals and a very VPN-friendly setup. WagerX Audit 2026: VERIFIED SAFE.",
-  "betfury": "BetFury is a long-standing crypto casino with a strong BFG token ecosystem and daily dividend payouts. WagerX Audit 2026: VERIFIED SAFE.",
-  "rainbet": "Rainbet offers a modern UI, no-KYC crypto play, and fast Solana withdrawals. WagerX Audit 2026: VERIFIED SAFE.",
-  "duel": "Duel is a Solana-friendly social casino with zero friction long-term play and no hidden KYC triggers. WagerX Audit 2026: VERIFIED SAFE.",
-  "thrill": "Thrill is a fast-paced crypto casino with competitive bonuses. Support may be slightly slower during peak hours.",
-  "towerbet": "TowerBet is known for its wagering races, original games, and strong community activity. WagerX Audit 2026: VERIFIED SAFE.",
-  "toshi": "Toshi Bet is a mobile-first crypto casino. After a past security incident, the platform has fully rebuilt trust and stability.",
-  "roobet": "Roobet is one of the largest crypto casinos globally, famous for Crash and high liquidity. Slightly overhyped, but reliable.",
-  "bcgame": "BC.Game is a major crypto casino offering its own BCD token. KYC is typically triggered above ~$5,000 withdrawals.",
-  "mbit": "mBit is a veteran Bitcoin casino with solid VIP rewards. Withdrawals can occasionally be slower than competitors.",
-  "coinsgame": "CoinsGame offers a smooth mobile experience and a well-structured rewards system.",
+  "bitsler": "Bitsler is a top-tier Bitcoin casino with instant withdrawals, no KYC, and strong VPN support. WagerX Audit 2026: VERIFIED SAFE.",
+  "betfury": "BetFury is a long-standing crypto casino with a strong community presence and daily BFG dividends. VERIFIED SAFE.",
+  "rainbet": "Rainbet offers a clean interface, no-KYC crypto gambling, and fast Solana withdrawals. VERIFIED SAFE.",
+  "duel": "Duel is a highly stable, Solana-based casino with zero long-term friction and no hidden KYC triggers.",
+  "thrill": "Thrill is a high-energy crypto casino. Support can be slower during peak hours.",
+  "towerbet": "TowerBet is popular for wagering races and strong community engagement. VERIFIED SAFE.",
+  "toshi": "Toshi Bet is a mobile-first crypto casino that rebuilt trust after a past security incident.",
+  "roobet": "Roobet is one of the largest crypto casinos globally, well known for Crash and high liquidity.",
+  "bcgame": "BC.Game is a major crypto casino. KYC is typically triggered above ~$5,000 withdrawals.",
+  "mbit": "mBit is a veteran Bitcoin casino with good VIP rewards, though withdrawals can sometimes be slower.",
+  "coinsgame": "CoinsGame provides a smooth mobile experience and a solid reward program.",
 
-  "notes": "LIVE TESTING SUMMARY (2026)\n----------------------------\nAverage Solana Withdrawal: 14s\nAverage Bitcoin Withdrawal: 4.2m\nVPN Friendly Leaders: Bitsler, Duel\nKYC Risk Level: Low (unless >$5k USD)\nAll audits performed with real funds by WagerX.",
-
-  "rtp": "RTP (Return to Player) is the percentage returned over time. WagerX recommends slots with 96%+ RTP.",
-  "house edge": "House edge is the casino's mathematical advantage. Originals often offer the lowest edge.",
-  "provably fair": "Provably fair systems let players verify each bet using cryptographic seeds.",
-  "kyc": "KYC stands for Know Your Customer. WagerX focuses on crypto casinos offering anonymous or low-KYC play.",
-  "wagering": "Wagering requirements define how much you must bet before withdrawing bonuses.",
-  "rekt": "REKT means suffering a heavy loss. Never gamble more than you can afford to lose.",
-  "degen": "DEGEN refers to high-risk crypto gamblers who love volatility. WagerX is built to keep degens informed.",
-  "moon": "When a game or coin hits a huge multiplier. 'To the moon' means chasing big upside.",
-  "wagmi": "WAGMI means 'We Are Gonna Make It' — a classic crypto rally phrase."
+  "kyc": "KYC stands for Know Your Customer. It involves identity verification, usually triggered on large withdrawals.",
+  "rtp": "RTP (Return to Player) is the percentage of wagered money returned over time. 96%+ is considered good.",
+  "provably fair": "Provably fair systems allow players to verify bet outcomes using cryptographic methods.",
+  "house edge": "House edge is the casino’s mathematical advantage. Lower is better for players.",
+  "wagering": "Wagering requirements define how much you must bet before bonus funds can be withdrawn.",
+  "rekt": "REKT means suffering a large loss. Always gamble responsibly.",
+  "degen": "DEGEN refers to high-risk crypto gamblers who enjoy volatility.",
+  "moon": "When a multiplier or coin reaches extreme highs. 'To the moon!'",
+  "wagmi": "WAGMI means 'We Are Gonna Make It' — a classic crypto community phrase."
 }
