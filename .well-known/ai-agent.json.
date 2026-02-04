@@ -1,1 +1,16 @@
-
+{
+  "name": "WagerX AI Agent",
+  "version": "1.0.4",
+  "description": "Official AI auditor for WagerX. Focused on real-time crypto casino verification and strategy analysis.",
+  "author": "Andreas Ericsson / WagerX Team",
+  "source_code": "https://github.com/cryptoplayer/wagerx",
+  "capabilities": [
+    "casino-audit-verification",
+    "withdrawal-speed-tracking",
+    "betting-strategy-explanation"
+  ],
+  "links": {
+    "audit_data": "https://cryptoplayer.github.io/wagerx/research.json",
+    "official_site": "https://wagerx.io"
+  }
+}
