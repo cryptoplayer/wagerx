@@ -2,19 +2,17 @@ async function getBotResponse(userInput) {
   const input = userInput.toLowerCase().trim();
 
   try {
-    const res = await fetch(
-      "https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO/main/research.json"
+    const response = await fetch(
+      "https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json"
     );
 
-    if (!res.ok) {
+    if (!response.ok) {
       throw new Error("Failed to load research.json");
     }
 
-    const data = await res.json();
+    const data = await response.json();
 
-    /* ----------------------------------------
-       1️⃣ HIGH PRIORITY: BEST CASINOS
-    ---------------------------------------- */
+    // 1️⃣ Priority intent: Best casinos
     if (data.intent_best_casinos) {
       for (const keyword of data.intent_best_casinos.keywords) {
         if (input.includes(keyword)) {
@@ -23,22 +21,23 @@ async function getBotResponse(userInput) {
       }
     }
 
-    /* ----------------------------------------
-       2️⃣ STANDARD KEYWORD MATCHING
-    ---------------------------------------- */
+    // 2️⃣ Keyword matching
     for (const key in data) {
       if (key.startsWith("intent_")) continue;
 
-      const value = data[key];
-      if (typeof value === "string" && input.includes(key.toLowerCase())) {
-        return value;
+      if (
+        typeof data[key] === "string" &&
+        input.includes(key.toLowerCase())
+      ) {
+        return data[key];
       }
     }
 
-    return "I can help with best crypto casinos, audits, KYC, RTP, VPN-friendly sites, or specific casinos like Bitsler 👀";
+    // 3️⃣ Fallback
+    return "Ask me about **best crypto casinos**, audits, KYC, RTP, or specific casinos like Bitsler 👀";
 
-  } catch (err) {
-    console.error("WagerX Bot Error:", err);
-    return "⚠️ WagerX bot couldn’t load audit data. Please try again in a moment.";
+  } catch (error) {
+    console.error("WagerX Bot Error:", error);
+    return "⚠️ WagerX bot failed to load audit data. Please try again shortly.";
   }
 }
