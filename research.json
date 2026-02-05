@@ -1,38 +1,72 @@
-{
-  "metadata": {
-    "system": "WagerX AI v2.0",
-    "database_size": "Growing",
-    "last_sync": "2026-02-05"
-  },
-  "knowledge_base": {
-    "kyc": "KYC stands for Know Your Customer. In 2026, most 'No-KYC' casinos still trigger a check if you withdraw more than $2,000 or 0.05 BTC.",
-    "vpn": "Most crypto casinos allow VPNs for privacy, but using them to bypass region locks (like playing from the US/UK) can lead to seized funds.",
-    "wagerx": "WagerX was founded in 2018 by Andreas Ericsson to provide forensic-level transparency in gambling."
-  },
-  "audits": [
-    {
-      "casino": "Bitsler",
-      "status": "Verified",
-      "trust_score": 9.8,
-      "latest_test": "2026-02-05",
-      "withdrawal_speed": "Instant",
-      "notes": "Still the gold standard for 2026. No issues with large BTC withdrawals."
-    },
-    {
-      "casino": "Roobet",
-      "status": "Caution",
-      "trust_score": 8.5,
-      "latest_test": "2026-02-04",
-      "withdrawal_speed": "25 mins",
-      "notes": "Triggered a soft-KYC on a 2 ETH withdrawal. Keep documents ready."
-    },
-    {
-      "casino": "Rainbet",
-      "status": "Verified",
-      "trust_score": 9.5,
-      "latest_test": "2026-02-01",
-      "withdrawal_speed": "5 mins",
-      "notes": "Excellent performance, but support chat is slow during peak hours."
+<script>
+var labData = null;
+
+async function loadWagerX() {
+    var url = 'https://cryptoplayer.github.io/wagerx/research.json?v=' + Date.now();
+    try {
+        const response = await fetch(url);
+        labData = await response.json();
+        console.log("WagerX v2.0: Brain Synced");
+    } catch (e) {
+        console.error("Sync Error");
     }
-  ]
 }
+loadWagerX();
+
+function sendToLab() {
+    var screen = document.getElementById('wagerx-log');
+    var field = document.getElementById('wagerx-input');
+    var cmd = field.value.trim().toLowerCase();
+    if (!cmd) return;
+
+    // Add User Bubble
+    screen.innerHTML += `<div class="msg msg-user">${field.value}</div>`;
+    field.value = "";
+
+    setTimeout(function() {
+        let reply = "I don't have forensic data for that yet. Try 'Bitsler' or ask 'What is KYC?'.";
+
+        if (labData) {
+            // 1. SEARCH FOR CASINOS (v2.0 uses 'audits' array)
+            const matches = labData.audits.filter(c => cmd.includes(c.casino.toLowerCase()));
+
+            // Handle Comparison (2 or more casinos mentioned)
+            if (matches.length >= 2) {
+                reply = `<div class="audit-card">
+                            <b style="color:#00ff00;">LAB COMPARISON</b><br><br>`;
+                matches.forEach(m => {
+                    reply += `<b>${m.casino}</b>: Score ${m.trust_score} | Speed: ${m.withdrawal_speed}<br>`;
+                });
+                reply += `<br><i style="font-size:11px;">Verdict: Based on 2026 data, ${matches[0].casino} is currently leading.</i></div>`;
+            } 
+            // Handle Single Casino Audit
+            else if (matches.length === 1) {
+                const c = matches[0];
+                reply = `<div class="audit-card">
+                            <b style="color:#00ff00;">${c.casino} AUDIT (v2.0)</b><br>
+                            <p style="margin:8px 0;">${c.notes}</p>
+                            <div class="audit-grid">
+                                <div>STATUS: <span class="audit-val">${c.status}</span></div>
+                                <div>SPEED: <span class="audit-val">${c.withdrawal_speed}</span></div>
+                                <div>SCORE: <span class="audit-val">${c.trust_score}/10</span></div>
+                                <div>TESTED: <span class="audit-val">${c.latest_test}</span></div>
+                            </div>
+                         </div>`;
+            }
+            // 2. SEARCH KNOWLEDGE BASE (KYC, VPN, WagerX)
+            else {
+                for (let key in labData.knowledge_base) {
+                    if (cmd.includes(key)) {
+                        reply = `<b>WagerX Knowledge:</b><br>${labData.knowledge_base[key]}`;
+                    }
+                }
+            }
+        }
+
+        screen.innerHTML += `<div class="msg msg-ai">${reply}</div>`;
+        screen.scrollTop = screen.scrollHeight;
+    }, 400);
+}
+
+document.getElementById('wagerx-input').onkeydown = function(e) { if (e.keyCode === 13) sendToLab(); };
+</script>
