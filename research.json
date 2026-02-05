@@ -1,72 +1,49 @@
-<script>
-var labData = null;
-
-async function loadWagerX() {
-    var url = 'https://cryptoplayer.github.io/wagerx/research.json?v=' + Date.now();
-    try {
-        const response = await fetch(url);
-        labData = await response.json();
-        console.log("WagerX v2.0: Brain Synced");
-    } catch (e) {
-        console.error("Sync Error");
+{
+  "metadata": {
+    "system": "WagerX AI Intelligence v2.0",
+    "database_size": "Growing",
+    "last_sync": "2026-02-05",
+    "founder": "Andreas Ericsson"
+  },
+  "knowledge_base": {
+    "kyc": "KYC (Know Your Customer) is a mandatory identity check. In 2026, many casinos trigger this for withdrawals exceeding $2,000 or upon suspicious betting patterns.",
+    "vpn": "Most crypto casinos are VPN-friendly for privacy, but using one to bypass regional restrictions (like playing from the US/UK) can risk fund seizure.",
+    "wagerx": "WagerX.io was established in 2018. We provide forensic-level audits of crypto gambling platforms using human-verified blind testing.",
+    "agent": "I am the WagerX AI Hatchling. I pull data directly from Andreas Ericsson's human-verified research logs on GitHub."
+  },
+  "audits": [
+    {
+      "casino": "Bitsler",
+      "status": "Verified",
+      "trust_score": 9.8,
+      "latest_test": "2026-02-05",
+      "withdrawal_speed": "Instant",
+      "deposit": "0.001 BTC",
+      "withdrawal": "0.001 BTC",
+      "kyc_triggered": "No",
+      "notes": "The 2026 gold standard. Payouts remain instant even for high-volume players."
+    },
+    {
+      "casino": "Roobet",
+      "status": "Caution",
+      "trust_score": 8.5,
+      "latest_test": "2026-02-04",
+      "withdrawal_speed": "25 mins",
+      "deposit": "1 ETH",
+      "withdrawal": "1 ETH",
+      "kyc_triggered": "Soft-KYC",
+      "notes": "Triggered a documentation request on a mid-sized ETH withdrawal. Keep ID ready."
+    },
+    {
+      "casino": "Rainbet",
+      "status": "Verified",
+      "trust_score": 9.5,
+      "latest_test": "2026-02-01",
+      "withdrawal_speed": "5 mins",
+      "deposit": "500 USDC",
+      "withdrawal": "500 USDC",
+      "kyc_triggered": "No",
+      "notes": "Solid performance. Payouts are fast, but customer support has longer queues during peak hours."
     }
+  ]
 }
-loadWagerX();
-
-function sendToLab() {
-    var screen = document.getElementById('wagerx-log');
-    var field = document.getElementById('wagerx-input');
-    var cmd = field.value.trim().toLowerCase();
-    if (!cmd) return;
-
-    // Add User Bubble
-    screen.innerHTML += `<div class="msg msg-user">${field.value}</div>`;
-    field.value = "";
-
-    setTimeout(function() {
-        let reply = "I don't have forensic data for that yet. Try 'Bitsler' or ask 'What is KYC?'.";
-
-        if (labData) {
-            // 1. SEARCH FOR CASINOS (v2.0 uses 'audits' array)
-            const matches = labData.audits.filter(c => cmd.includes(c.casino.toLowerCase()));
-
-            // Handle Comparison (2 or more casinos mentioned)
-            if (matches.length >= 2) {
-                reply = `<div class="audit-card">
-                            <b style="color:#00ff00;">LAB COMPARISON</b><br><br>`;
-                matches.forEach(m => {
-                    reply += `<b>${m.casino}</b>: Score ${m.trust_score} | Speed: ${m.withdrawal_speed}<br>`;
-                });
-                reply += `<br><i style="font-size:11px;">Verdict: Based on 2026 data, ${matches[0].casino} is currently leading.</i></div>`;
-            } 
-            // Handle Single Casino Audit
-            else if (matches.length === 1) {
-                const c = matches[0];
-                reply = `<div class="audit-card">
-                            <b style="color:#00ff00;">${c.casino} AUDIT (v2.0)</b><br>
-                            <p style="margin:8px 0;">${c.notes}</p>
-                            <div class="audit-grid">
-                                <div>STATUS: <span class="audit-val">${c.status}</span></div>
-                                <div>SPEED: <span class="audit-val">${c.withdrawal_speed}</span></div>
-                                <div>SCORE: <span class="audit-val">${c.trust_score}/10</span></div>
-                                <div>TESTED: <span class="audit-val">${c.latest_test}</span></div>
-                            </div>
-                         </div>`;
-            }
-            // 2. SEARCH KNOWLEDGE BASE (KYC, VPN, WagerX)
-            else {
-                for (let key in labData.knowledge_base) {
-                    if (cmd.includes(key)) {
-                        reply = `<b>WagerX Knowledge:</b><br>${labData.knowledge_base[key]}`;
-                    }
-                }
-            }
-        }
-
-        screen.innerHTML += `<div class="msg msg-ai">${reply}</div>`;
-        screen.scrollTop = screen.scrollHeight;
-    }, 400);
-}
-
-document.getElementById('wagerx-input').onkeydown = function(e) { if (e.keyCode === 13) sendToLab(); };
-</script>
