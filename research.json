@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "system": "WagerX AI Intelligence v2.0",
-    "database_size": "Growing",
+    "system": "WagerX AI Intelligence v2.3",
+    "database_size": "9 Active Audits",
     "last_sync": "2026-02-05",
     "founder": "Andreas Ericsson"
   },
@@ -18,42 +18,89 @@
   "knowledge_base": {
     "kyc": "KYC (Know Your Customer) is a mandatory identity check. In 2026, many casinos trigger this for withdrawals exceeding $2,000 or upon suspicious betting patterns.",
     "vpn": "Most crypto casinos are VPN-friendly for privacy, but using one to bypass regional restrictions (like playing from the US/UK) can risk fund seizure.",
-    "wagerx": "WagerX.io was established in 2018. We provide forensic-level audits of crypto gambling platforms using human-verified blind testing.",
-    "agent": "I am the WagerX AI Hatchling. I pull data directly from Andreas Ericsson's human-verified research logs on GitHub."
+    "wagerx": "WagerX.io was established in 2018. We provide forensic-level audits of crypto gambling platforms using human-verified blind testing."
   },
   "audits": [
     {
       "casino": "Bitsler",
-      "status": "Verified",
+      "status": "Verified & Safe",
       "trust_score": 9.8,
       "latest_test": "2026-02-05",
       "withdrawal_speed": "Instant",
-      "deposit": "0.001 BTC",
-      "withdrawal": "0.001 BTC",
-      "kyc_triggered": "No",
-      "notes": "The 2026 gold standard. Payouts remain instant even for high-volume players."
+      "kyc_triggered": "None",
+      "notes": "Our top pick. Tested via Norway VPN. Minor 6-min delay in support today, but otherwise flawless."
     },
     {
-      "casino": "Roobet",
-      "status": "Caution",
-      "trust_score": 8.5,
-      "latest_test": "2026-02-04",
-      "withdrawal_speed": "25 mins",
-      "deposit": "1 ETH",
-      "withdrawal": "1 ETH",
-      "kyc_triggered": "Soft-KYC",
-      "notes": "Triggered a documentation request on a mid-sized ETH withdrawal. Keep ID ready."
+      "casino": "Toshi Bet",
+      "status": "Verified & Safe",
+      "trust_score": 9.8,
+      "latest_test": "2026-02-05",
+      "withdrawal_speed": "Instant",
+      "kyc_triggered": "None",
+      "notes": "Personal favorite. Structured dashboard. Tested via Norway VPN. Support took 11 mins today, which is slow for them."
     },
     {
       "casino": "Rainbet",
-      "status": "Verified",
-      "trust_score": 9.5,
-      "latest_test": "2026-02-01",
-      "withdrawal_speed": "5 mins",
-      "deposit": "500 USDC",
-      "withdrawal": "500 USDC",
+      "status": "Verified & Safe",
+      "trust_score": 9.8,
+      "latest_test": "2026-02-05",
+      "withdrawal_speed": "Instant",
       "kyc_triggered": "No",
-      "notes": "Solid performance. Payouts are fast, but customer support has longer queues during peak hours."
+      "notes": "Perfect blind test today (0.3 ETH dep / 1.3 ETH with). Solved previous Pragmatic slot issues. Support: 5 mins."
+    },
+    {
+      "casino": "Duel",
+      "status": "Verified & Safe",
+      "trust_score": 9.8,
+      "latest_test": "2026-02-05",
+      "withdrawal_speed": "Fast",
+      "kyc_triggered": "None",
+      "notes": "Love the 'No Bonus' approach. Overall great experience via Norway VPN, but support is slow (8 mins)."
+    },
+    {
+      "casino": "Thrill",
+      "status": "Verified & Safe",
+      "trust_score": 9.8,
+      "latest_test": "2026-02-05",
+      "withdrawal_speed": "Fast",
+      "kyc_triggered": "None",
+      "notes": "Tested from Mexico VPN. Support was much faster today (4 mins) compared to previous tests."
+    },
+    {
+      "casino": "Tower Bet",
+      "status": "Verified & Safe",
+      "trust_score": 9.8,
+      "latest_test": "2026-02-02",
+      "withdrawal_speed": "Instant",
+      "kyc_triggered": "None",
+      "notes": "Currently under 'hard stress test' via a daily wager race. Support is elite (2 mins)."
+    },
+    {
+      "casino": "Roobet",
+      "status": "Verified & Safe",
+      "trust_score": 9.8,
+      "latest_test": "2026-02-05",
+      "withdrawal_speed": "Fast (after discussion)",
+      "kyc_triggered": "Soft KYC",
+      "notes": "Encountered a Soft KYC on a 2 ETH withdrawal. Support discussion took 25 mins, but resolved successfully."
+    },
+    {
+      "casino": "BC Game",
+      "status": "Verified & Safe",
+      "trust_score": 9.8,
+      "latest_test": "2026-01-27",
+      "withdrawal_speed": "Fast",
+      "kyc_triggered": "YES ($5,200 withdrawal)",
+      "notes": "One of the best. Encountered our first KYC here during a $5,200 USD withdrawal test. Support: 3 mins."
+    },
+    {
+      "casino": "Bet Fury",
+      "status": "Verified & Safe",
+      "trust_score": 6.0,
+      "latest_test": "2026-02-05",
+      "withdrawal_speed": "Slow",
+      "kyc_triggered": "Yes",
+      "notes": "Lower score due to slow support (12 mins) and triggered KYC. Needs more frequent game updates."
     }
   ]
 }
