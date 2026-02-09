@@ -1,40 +1,48 @@
 {
   "metadata": {
-    "system": "WagerX AI Intelligence v2.3",
-    "database_size": "9 Active Audits",
+    "system": "WagerX Forensic Ledger",
     "last_sync": "2026-02-09",
     "founder": "Andreas Ericsson"
   },
   "personality": {
-    "name": "WagerX Hatchling",
-    "mission": "Forensic transparency in crypto gambling.",
-    "logic_source": "Raw data from Andreas Ericsson's 2018-2026 GitHub archive.",
     "identity_responses": {
-      "trust": "I pull raw data from a 2018-established GitHub repository. Unlike 'affiliate' sites, my data comes from blind human deposit/withdrawal tests. My loyalty is to the ledger, not the casino.",
-      "who": "I am the WagerX AI Hatchling. I was built to scan forensic gambling logs and help players avoid 'Exit Scams' and 'KYC Traps'.",
-      "andreas": "Andreas Ericsson is the lead forensic auditor at WagerX. He has been testing crypto casinos since 2018 to ensure they actually pay out."
+      "who": "I am the WagerX AI. I scan the forensic gambling archives established by Andreas Ericsson in 2018 to find the truth about crypto casinos.",
+      "andreas": "Andreas Ericsson is the founder of WagerX. He has been testing crypto casinos since 2018, conducting blind deposit and withdrawal tests to ensure player safety.",
+      "trust": "Trust comes from the ledger. We use human-verified data from 2018-2026. If a casino fails a withdrawal test, it is flagged here instantly."
     }
   },
-  "intents": {
-    "best_casinos": {
-      "keywords": ["best", "top", "list", "recommend", "where to play", "best crypto casino"],
-      "answer": "🔍 **WagerX Golden Ledger - Top Picks**\n\n1. **Bitsler** (9.8/10)\n2. **Toshi Bet** (9.8/10)\n3. **Rainbet** (9.8/10)\n4. **BC Game** (9.8/10)\n\nAll passed the latest 2026 forensic stress tests."
+  "audits": [
+    {
+      "casino": "Bitsler",
+      "status": "Verified Safe",
+      "trust_score": 9.8,
+      "withdrawal_speed": "Instant",
+      "kyc_triggered": "Rarely",
+      "notes": "Top-tier reliability. Successfully passed 2026 forensic stress test via Norway VPN."
+    },
+    {
+      "casino": "Toshi Bet",
+      "status": "Verified Safe",
+      "trust_score": 9.8,
+      "withdrawal_speed": "Instant",
+      "kyc_triggered": "No",
+      "notes": "Outstanding support response (under 10 mins). Personal favorite for 2026."
+    },
+    {
+      "casino": "Rainbet",
+      "status": "Verified Safe",
+      "trust_score": 9.8,
+      "withdrawal_speed": "Instant",
+      "kyc_triggered": "No",
+      "notes": "Passed Pragmatic Play slot integrity checks. Excellent user interface."
+    },
+    {
+      "casino": "BC Game",
+      "status": "Caution",
+      "trust_score": 8.5,
+      "withdrawal_speed": "3-10 Minutes",
+      "kyc_triggered": "High Volume",
+      "notes": "Triggered KYC at $5,200 withdrawal. Support is fast but strict."
     }
-  },
-  "casinos": {
-    "bitsler": "🟢 Bitsler (9.8/10): Instant withdrawals. Tested via Norway VPN. Top Pick.",
-    "toshi bet": "🟢 Toshi Bet (9.8/10): Personal favorite. 11-min support response today.",
-    "rainbet": "🟢 Rainbet (9.8/10): Solved Pragmatic slot issues. 5-min support response.",
-    "duel": "🟢 Duel (9.8/10): Great 'No Bonus' approach. 8-min support response.",
-    "thrill": "🟢 Thrill (9.8/10): Faster support today (4 mins). Tested via Mexico VPN.",
-    "tower bet": "🟢 Tower Bet (9.8/10): Under 'hard stress test' wager race. 2-min support.",
-    "roobet": "🟡 Roobet (9.8/10): Soft KYC triggered on 2 ETH. 25-min resolution.",
-    "bc game": "🟡 BC Game (9.8/10): KYC triggered at $5,200 withdrawal. 3-min support.",
-    "bet fury": "🔴 Bet Fury (6.0/10): Slow support (12 mins). Triggered KYC. Needs updates."
-  },
-  "glossary": {
-    "kyc": "KYC is a mandatory ID check. Often triggered over $2,000.",
-    "vpn": "Most are VPN-friendly, but regional bypasses risk fund seizure.",
-    "wagerx": "Forensic auditing since 2018 using human-verified blind testing."
-  }
+  ]
 }
