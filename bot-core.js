@@ -4,38 +4,48 @@ async function getBotResponse(userInput) {
   const input = userInput.toLowerCase().trim();
 
   try {
-    // 1. FRESH FETCH (Bypass Cache for testing)
-    const response = await fetch(`https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json?t=${Date.now()}`);
-    wagerxData = await response.json();
+    // 1. FORCED FETCH (Prevents the "Nothing Happens" bug)
+    if (!wagerxData) {
+      const timestamp = new Date().getTime();
+      const response = await fetch(`https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json?t=${timestamp}`);
+      
+      if (!response.ok) throw new Error("JSON not found on GitHub");
+      
+      const textData = await response.text(); // Get raw text first
+      wagerxData = JSON.parse(textData); // Parse carefully
+    }
 
     const { intents, casinos, glossary, personality } = wagerxData;
 
-    // A. IDENTITY CHECK (Who is Andreas?)
-    if (input.includes("who") || input.includes("andreas") || input.includes("trust")) {
-        if (input.includes("andreas")) return personality.identity_responses.andreas;
-        if (input.includes("trust")) return personality.identity_responses.trust;
-        return personality.identity_responses.who;
+    // A. PRIORITY GATE: BEST CASINOS
+    if (intents && intents.best_casinos) {
+      if (intents.best_casinos.keywords.some(kw => input.includes(kw))) {
+        return intents.best_casinos.answer;
+      }
     }
 
-    // B. BEST CASINOS (Safe Lane)
-    if (intents.best_casinos.keywords.some(kw => input.includes(kw))) {
-      return intents.best_casinos.answer;
+    // B. CASINO AUDITS
+    if (casinos) {
+      for (const [name, info] of Object.entries(casinos)) {
+        if (input.includes(name)) {
+            // Check for the "Naked Emperor" Red Alert
+            if (info.status === "Naked Emperor") {
+                return `🚨 WAGERX RED ALERT 🚨\n\nSite: ${name.toUpperCase()}\nStatus: BLACKLISTED\nReason: ${info.reason}`;
+            }
+            return typeof info === 'string' ? info : `🟢 ${name.toUpperCase()}: ${info.status}. Score: ${info.trust_score}. ${info.notes}`;
+        }
+      }
     }
 
-    // C. SPECIFIC CASINO (Forensic Lane)
-    for (const [name, info] of Object.entries(casinos)) {
-      if (input.includes(name)) return info;
+    // C. IDENTITY/ANDREAS
+    if (input.includes("andreas") || input.includes("who are you")) {
+       return personality.identity_responses.andreas || personality.identity_responses.who;
     }
 
-    // D. GLOSSARY
-    for (const [term, def] of Object.entries(glossary)) {
-      if (input.includes(term)) return def;
-    }
-
-    // E. THE FALLBACK (The message shown when no match is found)
-    return "🔍 No Forensic Match in the Ledger yet. Ask for 'best casinos' or name a specific brand for a test result.";
+    return "🔍 No Forensic Match. Ask for 'best casinos' or a specific brand.";
 
   } catch (error) {
-    return "⚠️ WagerX Lab Link Error. Check GitHub JSON formatting.";
+    console.error("Critical WagerX Error:", error);
+    return "⚠️ System error: The Ledger is currently updating. Try again in 30 seconds.";
   }
 }
