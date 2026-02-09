@@ -1,51 +1,39 @@
+// WagerX Intelligence Core v2.5
 let wagerxData = null;
 
 async function getBotResponse(userInput) {
-  const input = userInput.toLowerCase().trim();
-
-  try {
-    // 1. FORCED FETCH (Prevents the "Nothing Happens" bug)
+    const input = userInput.toLowerCase().trim();
+    
+    // 1. Fetch data if not already loaded
     if (!wagerxData) {
-      const timestamp = new Date().getTime();
-      const response = await fetch(`https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json?t=${timestamp}`);
-      
-      if (!response.ok) throw new Error("JSON not found on GitHub");
-      
-      const textData = await response.text(); // Get raw text first
-      wagerxData = JSON.parse(textData); // Parse carefully
-    }
-
-    const { intents, casinos, glossary, personality } = wagerxData;
-
-    // A. PRIORITY GATE: BEST CASINOS
-    if (intents && intents.best_casinos) {
-      if (intents.best_casinos.keywords.some(kw => input.includes(kw))) {
-        return intents.best_casinos.answer;
-      }
-    }
-
-    // B. CASINO AUDITS
-    if (casinos) {
-      for (const [name, info] of Object.entries(casinos)) {
-        if (input.includes(name)) {
-            // Check for the "Naked Emperor" Red Alert
-            if (info.status === "Naked Emperor") {
-                return `🚨 WAGERX RED ALERT 🚨\n\nSite: ${name.toUpperCase()}\nStatus: BLACKLISTED\nReason: ${info.reason}`;
-            }
-            return typeof info === 'string' ? info : `🟢 ${name.toUpperCase()}: ${info.status}. Score: ${info.trust_score}. ${info.notes}`;
+        try {
+            const response = await fetch(`https://cryptoplayer.github.io/wagerx/research.json?t=${Date.now()}`);
+            wagerxData = await response.json();
+        } catch (e) {
+            return "⚠️ Connection to the Forensic Ledger failed. Please check back in a moment.";
         }
-      }
     }
 
-    // C. IDENTITY/ANDREAS
-    if (input.includes("andreas") || input.includes("who are you")) {
-       return personality.identity_responses.andreas || personality.identity_responses.who;
+    const { personality, audits } = wagerxData;
+
+    // 2. Identity Queries
+    if (input.includes("andreas")) return personality.identity_responses.andreas;
+    if (input.includes("who") || input.includes("what is wagerx")) return personality.identity_responses.who;
+    if (input.includes("trust") || input.includes("reliable")) return personality.identity_responses.trust;
+
+    // 3. Discovery Queries (The "Best" Logic)
+    const discoveryKeywords = ["best", "top", "recommend", "list", "where to play"];
+    if (discoveryKeywords.some(kw => input.includes(kw))) {
+        return "🔍 **WagerX 2026 Top Picks:**\n\n1. **Bitsler** (9.8/10)\n2. **Toshi Bet** (9.8/10)\n3. **Rainbet** (9.8/10)\n\nThese sites have passed the most recent withdrawal stress tests.";
     }
 
-    return "🔍 No Forensic Match. Ask for 'best casinos' or a specific brand.";
+    // 4. Audit Search (The "Bitsler" Logic)
+    const match = audits.find(a => input.includes(a.casino.toLowerCase()));
+    if (match) {
+        let color = match.trust_score > 9 ? "🟢" : "🟡";
+        return `${color} **${match.casino.toUpperCase()} AUDIT**\n\n**Status:** ${match.status}\n**Score:** ${match.trust_score}/10\n**Withdrawal:** ${match.withdrawal_speed}\n**KYC:** ${match.kyc_triggered}\n\n**Forensic Note:** ${match.notes}`;
+    }
 
-  } catch (error) {
-    console.error("Critical WagerX Error:", error);
-    return "⚠️ System error: The Ledger is currently updating. Try again in 30 seconds.";
-  }
+    // 5. Fallback
+    return "🔍 No Forensic Match in the current ledger. Type a casino name (like Bitsler) or ask for 'best crypto casinos'.";
 }
