@@ -17,78 +17,24 @@
   },
   "intents": {
     "best_casinos": {
-      "keywords": [
-        "best", 
-        "best crypto casino", 
-        "top sites", 
-        "recommend", 
-        "where to play", 
-        "best casino", 
-        "list"
-      ],
-      "answer": "🔍 **WagerX Golden Ledger - Verified Picks**\n\nBased on forensic blind tests, these sites are currently 🟢 VERIFIED SAFE:\n1. **Bitsler** (9.8/10) - Best overall stability.\n2. **Toshi Bet** (9.8/10) - Elite dashboard experience.\n3. **Rainbet** (9.8/10) - Solved recent slot payout bugs.\n4. **BC Game** (9.8/10) - High roller favorite (Soft KYC likely).\n\n*All passed the 2026 VPN Stress Test.*"
+      "keywords": ["best", "top", "list", "recommend", "where to play", "best crypto casino"],
+      "answer": "🔍 **WagerX Golden Ledger - Top Picks**\n\n1. **Bitsler** (9.8/10)\n2. **Toshi Bet** (9.8/10)\n3. **Rainbet** (9.8/10)\n4. **BC Game** (9.8/10)\n\nAll passed the latest 2026 forensic stress tests."
     }
-  },
-  "glossary": {
-    "kyc": "KYC (Know Your Customer) is a mandatory identity check. In 2026, many casinos trigger this for withdrawals exceeding $2,000 or upon suspicious betting patterns.",
-    "vpn": "Most crypto casinos are VPN-friendly for privacy, but using one to bypass regional restrictions (like playing from the US/UK) can risk fund seizure.",
-    "wagerx": "WagerX.io was established in 2018. We provide forensic-level audits of crypto gambling platforms using human-verified blind testing.",
-    "rtp": "Return to Player. The percentage of all wagered money a slot or game will pay back to players over time.",
-    "provably_fair": "A technology based on blockchain algorithms that allows players to manually verify the randomness and fairness of every single bet."
   },
   "casinos": {
-    "bitsler": {
-      "status": "Verified & Safe",
-      "trust_score": 9.8,
-      "latest_test": "2026-02-05",
-      "withdrawal_speed": "Instant",
-      "notes": "Our top pick. Tested via Norway VPN."
-    },
-    "roobet": {
-      "status": "Verified & Safe",
-      "trust_score": 9.8,
-      "kyc_triggered": "Soft KYC",
-      "notes": "Encountered a Soft KYC on a 2 ETH withdrawal."
-    },
-    "bet_fury": {
-      "status": "Naked Emperor",
-      "trust_score": 6.0,
-      "reason": "Lower score due to slow support (12 mins) and triggered KYC. Failed recent withdrawal speed test.",
-      "verdict": "PROBATION"
-    },
-    "scamking": {
-      "status": "Naked Emperor",
-      "reason": "Reported 'Exit Scam' behavior. Withdrawal buttons disabled for non-VIPs.",
-      "verdict": "BLACKLISTED"
-    }
+    "bitsler": "🟢 Bitsler (9.8/10): Instant withdrawals. Tested via Norway VPN. Top Pick.",
+    "toshi bet": "🟢 Toshi Bet (9.8/10): Personal favorite. 11-min support response today.",
+    "rainbet": "🟢 Rainbet (9.8/10): Solved Pragmatic slot issues. 5-min support response.",
+    "duel": "🟢 Duel (9.8/10): Great 'No Bonus' approach. 8-min support response.",
+    "thrill": "🟢 Thrill (9.8/10): Faster support today (4 mins). Tested via Mexico VPN.",
+    "tower bet": "🟢 Tower Bet (9.8/10): Under 'hard stress test' wager race. 2-min support.",
+    "roobet": "🟡 Roobet (9.8/10): Soft KYC triggered on 2 ETH. 25-min resolution.",
+    "bc game": "🟡 BC Game (9.8/10): KYC triggered at $5,200 withdrawal. 3-min support.",
+    "bet fury": "🔴 Bet Fury (6.0/10): Slow support (12 mins). Triggered KYC. Needs updates."
   },
-  "audits": [
-    {
-      "casino": "Bitsler",
-      "status": "Verified & Safe",
-      "trust_score": 9.8,
-      "latest_test": "2026-02-05",
-      "withdrawal_speed": "Instant",
-      "kyc_triggered": "None",
-      "notes": "Our top pick. Tested via Norway VPN. Minor 6-min delay in support today, but otherwise flawless."
-    },
-    {
-      "casino": "Toshi Bet",
-      "status": "Verified & Safe",
-      "trust_score": 9.8,
-      "latest_test": "2026-02-05",
-      "withdrawal_speed": "Instant",
-      "kyc_triggered": "None",
-      "notes": "Personal favorite. Structured dashboard. Tested via Norway VPN. Support took 11 mins today, which is slow for them."
-    },
-    {
-      "casino": "Rainbet",
-      "status": "Verified & Safe",
-      "trust_score": 9.8,
-      "latest_test": "2026-02-05",
-      "withdrawal_speed": "Instant",
-      "kyc_triggered": "No",
-      "notes": "Perfect blind test today (0.3 ETH dep / 1.3 ETH with). Solved previous Pragmatic slot issues. Support: 5 mins."
-    }
-  ]
+  "glossary": {
+    "kyc": "KYC is a mandatory ID check. Often triggered over $2,000.",
+    "vpn": "Most are VPN-friendly, but regional bypasses risk fund seizure.",
+    "wagerx": "Forensic auditing since 2018 using human-verified blind testing."
+  }
 }
