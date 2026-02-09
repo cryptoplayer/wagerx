@@ -16,29 +16,32 @@ async function getBotResponse(userInput) {
 
     const { intents, casinos, glossary } = wagerxData;
 
-    // 2. CHECK INTENTS (Best Casinos / Where to play)
+    // --- PRIORITY GATE: CHECK FOR DISCOVERY FIRST ---
+    // This stops the bot from being "suspicious" if the user is just looking for a list.
     if (intents && intents.best_casinos) {
       const best = intents.best_casinos;
-      // Check if user input matches any of the keywords in your JSON
       if (best.keywords.some(kw => input.includes(kw))) {
         return best.answer;
       }
     }
 
-    // 3. CHECK CASINO AUDITS (Specific Brand Lookup)
+    // --- SECONDARY: BRAND LOOKUP (The Forensic Lane) ---
     if (casinos) {
-      // We look for keys like "bitsler", "rainbet", etc.
       for (const [name, auditInfo] of Object.entries(casinos)) {
+        // We use a word-boundary check or exact match to avoid "best casino" matching "casino"
         if (input.includes(name)) {
+          // If the status is "Naked Emperor", we trigger the Red Alert
+          if (auditInfo.status === "Naked Emperor") {
+            return `🚨 WAGERX RED ALERT: NAKED EMPEROR DETECTED 🚨\n\nSubject: ${name.toUpperCase()}\nReason: ${auditInfo.reason}\n\n⚠️ Andreas Ericsson's Ledger: Avoid this site.`;
+          }
           return auditInfo;
         }
       }
     }
 
-    // 4. CHECK GLOSSARY (Terms like KYC, RTP)
+    // --- TERTIARY: GLOSSARY ---
     if (glossary) {
       for (const [term, definition] of Object.entries(glossary)) {
-        // Handle underscores (e.g., matching "provably fair" to "provably_fair")
         const readableTerm = term.replace(/_/g, ' ');
         if (input.includes(readableTerm)) {
           return definition;
@@ -46,7 +49,7 @@ async function getBotResponse(userInput) {
       }
     }
 
-    // 5. FALLBACK (Guidance for the user)
+    // 5. FALLBACK
     return "I am the WagerX Audit Bot. Ask me for the **'best casinos'**, or about specific brands like **Bitsler** or **Toshi**. I can also explain **KYC** or **RTP** 👀";
 
   } catch (error) {
