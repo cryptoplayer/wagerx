@@ -1,59 +1,41 @@
-// Cache to keep your 96+ Performance score
 let wagerxData = null;
 
 async function getBotResponse(userInput) {
   const input = userInput.toLowerCase().trim();
 
   try {
-    // 1. Fetch only once per session
-    if (!wagerxData) {
-      const response = await fetch(
-        "https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json"
-      );
-      if (!response.ok) throw new Error("Database link failed");
-      wagerxData = await response.json();
+    // 1. FRESH FETCH (Bypass Cache for testing)
+    const response = await fetch(`https://raw.githubusercontent.com/cryptoplayer/wagerx/main/research.json?t=${Date.now()}`);
+    wagerxData = await response.json();
+
+    const { intents, casinos, glossary, personality } = wagerxData;
+
+    // A. IDENTITY CHECK (Who is Andreas?)
+    if (input.includes("who") || input.includes("andreas") || input.includes("trust")) {
+        if (input.includes("andreas")) return personality.identity_responses.andreas;
+        if (input.includes("trust")) return personality.identity_responses.trust;
+        return personality.identity_responses.who;
     }
 
-    const { intents, casinos, glossary } = wagerxData;
-
-    // --- PRIORITY GATE: CHECK FOR DISCOVERY FIRST ---
-    // This stops the bot from being "suspicious" if the user is just looking for a list.
-    if (intents && intents.best_casinos) {
-      const best = intents.best_casinos;
-      if (best.keywords.some(kw => input.includes(kw))) {
-        return best.answer;
-      }
+    // B. BEST CASINOS (Safe Lane)
+    if (intents.best_casinos.keywords.some(kw => input.includes(kw))) {
+      return intents.best_casinos.answer;
     }
 
-    // --- SECONDARY: BRAND LOOKUP (The Forensic Lane) ---
-    if (casinos) {
-      for (const [name, auditInfo] of Object.entries(casinos)) {
-        // We use a word-boundary check or exact match to avoid "best casino" matching "casino"
-        if (input.includes(name)) {
-          // If the status is "Naked Emperor", we trigger the Red Alert
-          if (auditInfo.status === "Naked Emperor") {
-            return `🚨 WAGERX RED ALERT: NAKED EMPEROR DETECTED 🚨\n\nSubject: ${name.toUpperCase()}\nReason: ${auditInfo.reason}\n\n⚠️ Andreas Ericsson's Ledger: Avoid this site.`;
-          }
-          return auditInfo;
-        }
-      }
+    // C. SPECIFIC CASINO (Forensic Lane)
+    for (const [name, info] of Object.entries(casinos)) {
+      if (input.includes(name)) return info;
     }
 
-    // --- TERTIARY: GLOSSARY ---
-    if (glossary) {
-      for (const [term, definition] of Object.entries(glossary)) {
-        const readableTerm = term.replace(/_/g, ' ');
-        if (input.includes(readableTerm)) {
-          return definition;
-        }
-      }
+    // D. GLOSSARY
+    for (const [term, def] of Object.entries(glossary)) {
+      if (input.includes(term)) return def;
     }
 
-    // 5. FALLBACK
-    return "I am the WagerX Audit Bot. Ask me for the **'best casinos'**, or about specific brands like **Bitsler** or **Toshi**. I can also explain **KYC** or **RTP** 👀";
+    // E. THE FALLBACK (The message shown when no match is found)
+    return "🔍 No Forensic Match in the Ledger yet. Ask for 'best casinos' or name a specific brand for a test result.";
 
   } catch (error) {
-    console.error("WagerX Bot Error:", error);
-    return "⚠️ WagerX Lab connection lost. Please check back in a moment.";
+    return "⚠️ WagerX Lab Link Error. Check GitHub JSON formatting.";
   }
 }
