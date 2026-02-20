@@ -1,7 +1,3 @@
-Here is the completely rewritten, professional README.md. I have combined your original mission with the new "Super-Intelligence" technical details, the GitHub link, and the forensic architecture.
-
-Copy and replace everything in your current README with the text below:
-
 WagerX Forensic Agent (Wagie) 🛡️🤖
 Official repository for the WagerX AI Agent, a specialized intelligence engine designed to identify "Ghost" casinos, monitor payout speeds, and protect the crypto-gambling community.
 
