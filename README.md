@@ -54,7 +54,7 @@ Monitoring: Custom Telegram Webhooks
 🔗 Join the Movement
 We are building the sharpest crypto gambling intelligence engine on the planet.
 
-Official Site: WagerX.io
+Official Site: [WagerX.io](https://wagerx.io/)
 
 Forensic Feed: @Wagieagent on X
 
